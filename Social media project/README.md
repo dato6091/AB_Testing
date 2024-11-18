@@ -1,18 +1,82 @@
-# Introduction
 
-Conduct an A/B Testing on a project for a social media company. In the app, users can upload pictures and interact with other users liking the content and leaving comments. 
-The business model of the company is based on ads, so not only they show posts of users but also they are showing their advertisements from different brands. However, this business model is not particularly successful because the ads are not particularly relevant to the users that see them. Recently the company got a partnership request from company B, company B wants to show sponsored posts on the feed of the website so the users can see those posts more often. Those posts will have an affiliate link which, if a purchase is made, our company would get a revenue attribution (a small percentage of the sale). 
+# Comprehensive A/B Testing Workflow
 
-Here, I will be focusing in determining if the users are liking this new feature or not. I will do this by monitoring the following **success metrics**:
-* **Daily Active Users (DAU):** To make sure users come back. I'm considering the amounts of times a user opens the app per day. 
-* **Click-Through Rate (CTR):** To compare if the new type of sponsored links raise more interest than the previous sponsored posts. It is calculated as the division of the number of clicks of a user through all the ads the user has seen.
+## Overview
 
-For that, I'll be using two datasets:
-* Activity dataset: with the following structure:
-  * **userid:** unique identifier for each user.
-  * **dt:** date of the log
-  * **activity_level:** number of times the user opened the app that day.
-* CTR dataset:
-  * **userid:** unique identifier for each user.
-  * **dt:** date of the log
-  * **ctr:** click-through rate 
+This repository demonstrates a complete A/B testing workflow, from calculating metrics to evaluating statistical significance and analyzing results. The project consists of three Jupyter Notebooks, each focusing on a critical stage of the process:
+
+1. **Calculating Metrics**: Prepares and computes key performance indicators (KPIs) for the control and test groups.
+2. **Significance & Power Calculator**: Calculates statistical significance and power for different sample sizes and metrics.
+3. **A/B Test Analysis**: Conducts hypothesis testing and provides actionable insights based on the results.
+
+## Notebooks Overview
+
+### 1. Calculating Metrics
+- **Objective**: Aggregate and compute metrics such as average activity levels, retention rates, and click-through rates (CTR).
+- **Key Features**:
+  - Data preprocessing for user activity and CTR data.
+  - Aggregation of metrics by groups (control vs. test).
+  - Visualization of trends over time using Altair.
+
+### 2. Example of Significance Power Calculator
+- **Objective**: Understand the statistical power and significance thresholds required for the A/B test.
+- **Key Features**:
+  - Implementation of significance level calculators.
+  - Power analysis to ensure test reliability.
+  - Interactive examples to visualize type I and type II errors.
+
+### 3. A/B Test Analysis
+- **Objective**: Perform hypothesis testing and evaluate the impact of the experimental changes.
+- **Key Features**:
+  - Two-sample t-tests to compare means between control and test groups.
+  - Visualization of pre- and post-test metrics.
+  - Clear conclusions and recommendations based on statistical results.
+
+## Dataset
+
+The dataset includes:
+- **User Activity Data**:
+  - **userid**: Unique identifier for users.
+  - **dt**: Date of activity.
+  - **groupid**: Group identifier (0 = control, 1 = test).
+  - **activity_level**: User activity metric.
+- **Click-Through Rate (CTR) Data**:
+  - **ctr**: Click-through rate for each user on a given date.
+
+## Key Findings
+
+### Statistical Testing Results:
+1. **Activity Levels**:
+   - Before the test: No significant difference between groups.
+   - After the test: Significant improvement in activity levels in the test group.
+   - **T-statistic**: -1600.79, **P-value**: < 0.001 (for post-test activity levels).
+
+2. **Click-Through Rate (CTR)**:
+   - Significant improvement in CTR for the test group after the introduction of the new feature.
+
+## Recommendations
+
+Based on the analysis:
+- The new feature positively impacts user engagement and CTR.
+- It is recommended to roll out the feature to all users.
+- Post-implementation, monitor key metrics to confirm sustained improvement.
+
+## Dependencies
+
+- Python 3.9 or later
+- Libraries: `pandas`, `numpy`, `scipy`, `altair`, `matplotlib`
+
+## Usage
+
+1. Clone the repository and install dependencies.
+2. Run the notebooks sequentially:
+   - `1. Calculating Metrics.ipynb`
+   - `2. Example of Significance Power Calculator.ipynb`
+   - `3. AB Test Analysis.ipynb`
+3. Follow the conclusions and recommendations in Notebook 3.
+
+## Future Work
+
+- Include additional metrics for a more comprehensive analysis.
+- Test the feature's impact across different user segments.
+- Extend the analysis to include long-term trends post-implementation.
