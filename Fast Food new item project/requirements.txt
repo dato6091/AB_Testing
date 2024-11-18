@@ -1,0 +1,9 @@
+duckdb
+matplotlib
+numpy
+pandas
+scikit_posthocs
+scipy
+seaborn
+statsmodels
+tea_tasting
